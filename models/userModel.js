@@ -6,6 +6,7 @@ const UserSchema = mongoose.Schema({
     email: {type: String, required: true, maxlength: 50},
     phone: {type: String},
     password: {type: String, required: true, maxlength: 255},
+    verified: {type: Boolean, default: false},
     created_at: {type: Date, default: Date.now()},
     updated_at: {type: Date, default: Date.now()}
 })

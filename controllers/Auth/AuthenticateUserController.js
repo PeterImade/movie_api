@@ -2,6 +2,7 @@ const status = require("../../utils/status_codes")
 const User = require("../../models/userModel")
 const { check_if_user_exist_with_email, check_if_user_exist_with_id } = require("../../utils/userExist")
 const { encode_token, decode_token } = require("../../utils/token_mgt")
+
 const { verifyPassword } = require("../../utils/hash_password")
 
 class AuthenticateUser {
@@ -22,6 +23,7 @@ class AuthenticateUser {
                     } else {
                         const accessToken = encode_token(foundUser?._id, '10m')
                         const refreshToken = encode_token(foundUser?._id, '3d')
+
                         if (accessToken && refreshToken) {
                             res.status(status?.HTTP_200_OK).json({ status: 200, access_token: accessToken, refresh_token: refreshToken, message: "You have been logged in successfully" })
                         }
